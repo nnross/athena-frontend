@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "mainText";
+  src: url("../assets/Metrophobic-Regular.ttf");
+}
+@font-face {
+  font-family: "mainTitle";
+  src: url("../assets/PirataOne-Regular.ttf");
+}
+.about {
+  display: flex;
+  justify-content: center;
+}
+.about__title {
+  color: aqua;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #222222;
+  color: #F5F1E3;
+}
+.home__button {
+  border: none;
+  background-color: transparent;
+  color: #F5F1E3;
+}
+.home__button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.home__github {
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+}
+
+html, body, button {
+  margin: 0;
+  padding: 0;
+  background: #F5F1E3;
+  font-family: "mainText";
+}
+
+h5 {
+  font-family: "mainTitle";
+  margin: 0;
+  font-size: 128px;
+}/*# sourceMappingURL=main.css.map */

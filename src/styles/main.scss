@@ -1,0 +1,16 @@
+@import './colorsAndFonts';
+@import './about/about';
+@import './home/home';
+
+html,body,button {
+	margin:0;
+	padding:0;
+	background: $white;
+	font-family: 'mainText';
+}
+
+h5 {
+	font-family: 'mainTitle';
+  margin: 0;
+  font-size: 128px;
+}
