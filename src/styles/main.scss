@@ -1,16 +1,25 @@
 @import './colorsAndFonts';
 @import './about/about';
 @import './home/home';
+@import './signup/signup';
+@import './login/login';
 
-html,body,button {
+html,body {
 	margin:0;
 	padding:0;
-	background: $white;
 	font-family: 'mainText';
+	font-size: 16px;
+}
+
+h4, button {
+	margin:0;
+	padding:0;
+	font-family: 'mainText';
+	font-size: 24px;
 }
 
 h5 {
 	font-family: 'mainTitle';
-  margin: 0;
-  font-size: 128px;
+  	margin: 0;
+	font-size: 128px;
 }
