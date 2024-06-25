@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom/client';
+import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import Home from './pages/home';
@@ -8,27 +9,27 @@ import Login from './pages/login';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [{
       index: true,
       element: <Home />,
     },
     {
-      path: "about",
+      path: 'about',
       element: <About />,
     },
     {
-      path: "signup",
+      path: 'signup',
       element: <Signup />,
     },
     {
-      path: "login",
+      path: 'login',
       element: <Login />,
-    }]
-  }
+    }],
+  },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
- <RouterProvider router={router} />
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <RouterProvider router={router} />,
 );
