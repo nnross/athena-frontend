@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 
 const Signup = ({ className = 'signup', id = 'signup' }) => {
 	const [submit, setSubmit] = useState(false);
-	let image = 0;
+	const [character, setCharacter] = useState('');
+	const [image, setImage] = useState(1);
 
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -13,18 +14,20 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
 
 	const handleLeftClick = (e) => {
 		e.preventDefault();
-		if (image == 0) {
-			image = 3;
-		} else {image =- 1}
+		setImage(prevImage => prevImage === 1 ? 3 : prevImage - 1);
 	}
 
 	const handleRightClick = (e) => {
 		e.preventDefault();
-		if (image == 3) {
-			image = 0;
-		} else {image =+ 1}
+		setImage(prevImage => prevImage === 3 ? 1 : prevImage + 1);
 	}
+
+	useEffect(() => {
+		setCharacter(`../src/assets/character${image}.png`);
+	},[image]);
 	console.log(submit);
+	console.log(image);
+	console.log(character);
 
 	return(
   <div className={className} id={id}>
@@ -37,7 +40,9 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
 					<button className={`${className}__controls__left`} id={`${id}__controls__left`} onClick={handleLeftClick}></button>
 					<button className={`${className}__controls__right`} id={`${id}__controls__right`} onClick={handleRightClick}></button>
 				</div>
-				<img src={`./././assets/character${image}.png`} />
+				<div className={`${className}__character`} id={`${id}__character`}>
+					<img className={`${className}__character__img`} id={`${id}__character__img`} src={character} />
+				</div>
 				<div className={`${className}__continue`} id={`${id}__continue`}>
 					<button className={`${className}__continue__button`} id={`${id}__continue__button`}>pick this starting character</button>
 				</div>
