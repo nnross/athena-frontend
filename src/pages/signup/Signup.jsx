@@ -25,6 +25,12 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
     setSubmit(true);
   };
 
+  const handleCharacter = (e) => {
+    setLoading(1);
+    e.preventDefault();
+    console.log('to the profile');
+  };
+
   const handleLeftClick = (e) => {
     e.preventDefault();
     setImage((prevImage) => (prevImage === 1 ? 3 : prevImage - 1));
@@ -54,7 +60,7 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
               <img className={`${className}__character__img`} id={`${id}__character__img`} src={character} alt="" />
             </div>
             <div className={`${className}__continue`} id={`${id}__continue`}>
-              {loading === 1 ? null : <button className={`${className}__continue__button`} id={`${id}__continue__button`} type="button">pick this starting character</button>}
+              {loading === 1 ? null : <Link className={`${className}__continue__button`} id={`${id}__continue__button`} onClick={handleCharacter} to="/profile">pick this starting character</Link>}
             </div>
           </>
         )

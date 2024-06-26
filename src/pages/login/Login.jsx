@@ -1,12 +1,13 @@
 /* eslint-disable react/require-default-props */
 import propTypes from 'prop-types';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UseGetAccount } from './loginHook';
 
 const Login = ({ className = 'login', id = 'login' }) => {
   const [loading, setLoading] = useState(0);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     setLoading(1);
@@ -18,6 +19,7 @@ const Login = ({ className = 'login', id = 'login' }) => {
       setError,
       setLoading,
     );
+    navigate('/profile');
   };
   return (
     <div className={className} id={id}>
