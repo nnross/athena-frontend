@@ -3,7 +3,7 @@ import axios from 'axios';
 const baseUrl = 'http://localhost:3001';
 
 const createAccount = async (payload) => {
-  const res = await axios.post(`${baseUrl}/FROM BACKEND`, payload);
+  const res = await axios.post(`${baseUrl}/api/signup`, payload);
   return res.data;
 };
 

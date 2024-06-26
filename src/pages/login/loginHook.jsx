@@ -10,7 +10,6 @@ export const UseGetAccount = (username, password, setError, setLoading) => {
       window.localStorage.setItem('accountId', res.accountId);
       window.localStorage.setItem('expiration', Date.now() + 1000 * 60 * 60);
       setLoading(0);
-      window.location.reload();
     })
     .catch((exception) => {
       if (exception.response.status === 403) {

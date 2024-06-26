@@ -219,7 +219,6 @@
   width: 100%;
 }
 .signup__inputs__confirm__label {
-  padding-bottom: 20px;
   color: #F5F1E3;
 }
 .signup__inputs__confirm:focus {
@@ -235,6 +234,7 @@
   width: 100%;
 }
 .signup__inputs__email__label {
+  padding-bottom: 20px;
   color: #F5F1E3;
 }
 .signup__inputs__email:focus {
