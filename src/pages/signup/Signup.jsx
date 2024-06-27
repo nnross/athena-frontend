@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
-import { UseCreateAccount } from './signupHook';
+import { UseCreateAccount, UseCheckUsername, UseCheckEmail } from './signupHook';
 
 const Signup = ({ className = 'signup', id = 'signup' }) => {
   const [submit, setSubmit] = useState(false);
@@ -23,6 +23,9 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
   const [wrongPassword, setWrongPassword] = useState(false);
   const [wrongConfirmPassword, setWrongConfirmPassword] = useState(false);
 
+  const [usernameTaken, setUsernameTaken] = useState(false);
+  const [emailTaken, setEmailTaken] = useState(false);
+
   const usernameRegex = /^(?=.{4,20})/;
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
   const emailRegex = /^(?=.[\w-.]+@([\w-]+\.)+[\w-]{2,4}$)/;
@@ -39,11 +42,32 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
 
     if (usernameRegex.test(username) === false
       || passwordRegex.test(password) === false
-      || emailRegex.test(email) === false
       || confirmPassword !== password
       || [username, email, password, confirmPassword].includes('')) setDisabled(true);
     else setDisabled(false);
   }, [username, email, password, confirmPassword]);
+
+  const checkUsername = () => {
+    if (!wrongUsername) {
+      UseCheckUsername(username, setUsernameTaken, setError, setLoading);
+      if (usernameTaken) {
+        setDisabled(true);
+      } else {
+        setDisabled(false);
+      }
+    }
+  };
+
+  const checkEmail = () => {
+    if (!wrongEmail) {
+      UseCheckEmail(email, setEmailTaken, setError, setLoading);
+      if (emailTaken) {
+        setDisabled(true);
+      } else {
+        setDisabled(false);
+      }
+    }
+  };
 
   const handleCreate = (e) => {
     setLoading(1);
@@ -100,9 +124,9 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
         : (
           <>
             <form className={`${className}__inputs`} id={`${id}__inputs`} onSubmit={handleCreate}>
-              <input className={`${className}__inputs__username`} id={`${id}__inputs__username`} type="text" name="username" onChange={(e) => setUsername(e.target.value)} />
+              <input className={`${className}__inputs__username`} id={`${id}__inputs__username`} type="text" name="username" onChange={(e) => setUsername(e.target.value)} onBlur={checkUsername} />
               <label className={`${className}__inputs__username__label`} id={`${id}__inputs__username__label`} htmlFor="username">username</label>
-              <input className={`${className}__inputs__email`} id={`${id}__inputs__email`} type="text" name="email" onChange={(e) => setEmail(e.target.value)} />
+              <input className={`${className}__inputs__email`} id={`${id}__inputs__email`} type="text" name="email" onChange={(e) => setEmail(e.target.value)} onBlur={checkEmail} />
               <label className={`${className}__inputs__email__label`} id={`${id}__inputs__email__label`} htmlFor="email">email</label>
               <input className={`${className}__inputs__password`} id={`${id}__inputs__password`} type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
               <label className={`${className}__inputs__password__label`} id={`${id}__inputs__password__label`} htmlFor="password">password</label>
@@ -117,10 +141,24 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
                 </p>
               </div>
             ) : null}
+            { usernameTaken ? (
+              <div className={`${className}__check`} id={`${id}__check`}>
+                <p className={`${className}__check__text`}>
+                  this username is already taken
+                </p>
+              </div>
+            ) : null}
             { wrongEmail ? (
               <div className={`${className}__check`} id={`${id}__check`}>
                 <p className={`${className}__check__text`}>
                   not an email address
+                </p>
+              </div>
+            ) : null}
+            { emailTaken ? (
+              <div className={`${className}__check`} id={`${id}__check`}>
+                <p className={`${className}__check__text`}>
+                  this email is already used
                 </p>
               </div>
             ) : null}

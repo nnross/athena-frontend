@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import loginService from '../../services/loginService';
 
 export const UseCreateAccount = (username, email, password, setError, setLoading) => {
@@ -13,6 +12,28 @@ export const UseCreateAccount = (username, email, password, setError, setLoading
     })
     .catch(() => {
       setError('an error has occurred');
+      setLoading(2);
+    });
+};
+
+export const UseCheckUsername = (username, setUsernameTaken, setError, setLoading) => {
+  loginService.checkUsername(username)
+    .then((res) => {
+      setUsernameTaken(res);
+    })
+    .catch(() => {
+      setError('username check failed');
+      setLoading(2);
+    });
+};
+
+export const UseCheckEmail = (email, setEmailTaken, setError, setLoading) => {
+  loginService.checkEmail(email)
+    .then((res) => {
+      setEmailTaken(res);
+    })
+    .catch(() => {
+      setError('email check failed');
       setLoading(2);
     });
 };
