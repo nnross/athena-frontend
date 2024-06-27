@@ -12,6 +12,39 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
   const [image, setImage] = useState(1);
   const navigate = useNavigate();
 
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const [disabled, setDisabled] = useState(true);
+  const [wrongUsername, setWrongUsername] = useState(false);
+  const [wrongEmail, setWrongEmail] = useState(false);
+  const [wrongPassword, setWrongPassword] = useState(false);
+  const [wrongConfirmPassword, setWrongConfirmPassword] = useState(false);
+
+  const usernameRegex = /^(?=.{4,20})/;
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+  const emailRegex = /^(?=.[\w-.]+@([\w-]+\.)+[\w-]{2,4}$)/;
+
+  /**
+   * Checks that the password matches confirm password and username,
+   * password and name are in the correct form.
+   */
+  useEffect(() => {
+    setWrongUsername(usernameRegex.test(username) === false && username !== '');
+    setWrongEmail(emailRegex.test(email) === false && email !== '');
+    setWrongPassword(passwordRegex.test(password) === false && password !== '');
+    setWrongConfirmPassword(confirmPassword !== password);
+
+    if (usernameRegex.test(username) === false
+      || passwordRegex.test(password) === false
+      || emailRegex.test(email) === false
+      || confirmPassword !== password
+      || [username, email, password, confirmPassword].includes('')) setDisabled(true);
+    else setDisabled(false);
+  }, [username, email, password, confirmPassword]);
+
   const handleCreate = (e) => {
     setLoading(1);
     e.preventDefault();
@@ -67,20 +100,53 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
         : (
           <>
             <form className={`${className}__inputs`} id={`${id}__inputs`} onSubmit={handleCreate}>
-              <input className={`${className}__inputs__username`} id={`${id}__inputs__username`} type="text" name="username" />
+              <input className={`${className}__inputs__username`} id={`${id}__inputs__username`} type="text" name="username" onChange={(e) => setUsername(e.target.value)} />
               <label className={`${className}__inputs__username__label`} id={`${id}__inputs__username__label`} htmlFor="username">username</label>
-              <input className={`${className}__inputs__email`} id={`${id}__inputs__email`} type="text" name="email" />
+              <input className={`${className}__inputs__email`} id={`${id}__inputs__email`} type="text" name="email" onChange={(e) => setEmail(e.target.value)} />
               <label className={`${className}__inputs__email__label`} id={`${id}__inputs__email__label`} htmlFor="email">email</label>
-              <input className={`${className}__inputs__password`} id={`${id}__inputs__password`} type="text" name="password" />
+              <input className={`${className}__inputs__password`} id={`${id}__inputs__password`} type="password" name="password" onChange={(e) => setPassword(e.target.value)} />
               <label className={`${className}__inputs__password__label`} id={`${id}__inputs__password__label`} htmlFor="password">password</label>
-              <input className={`${className}__inputs__confirm`} id={`${id}__inputs__confirm`} type="text" name="confirm" />
+              <input className={`${className}__inputs__confirm`} id={`${id}__inputs__confirm`} type="password" name="confirm" onChange={(e) => setConfirmPassword(e.target.value)} />
               <label className={`${className}__inputs__confirm__label`} id={`${id}__inputs__confirm__label`} htmlFor="confirm">confirm password</label>
             </form>
+            { wrongUsername ? (
+              <div className={`${className}__check`} id={`${id}__check`}>
+                <p className={`${className}__check__text`}>
+                  username needs to be at least 4 characters
+                  long and shorther than 20 characters
+                </p>
+              </div>
+            ) : null}
+            { wrongEmail ? (
+              <div className={`${className}__check`} id={`${id}__check`}>
+                <p className={`${className}__check__text`}>
+                  not an email address
+                </p>
+              </div>
+            ) : null}
+            { wrongPassword ? (
+              <div className={`${className}__check`} id={`${id}__check`}>
+                <ul className={`${className}__check__list`}>
+                  password must include the following:
+                  <li> min eight characters </li>
+                  <li> one letter </li>
+                  <li> one number </li>
+                  <li> one special character </li>
+                </ul>
+              </div>
+            ) : null}
+            { !wrongPassword && wrongConfirmPassword ? (
+              <div className={`${className}__check`} id={`${id}__check`}>
+                <p className={`${className}__check__text`}>
+                  passwords do not match
+                </p>
+              </div>
+            ) : null}
             <div className={`${className}__back`} id={`${id}__back`}>
               <Link className={`${className}__back__button`} id={`${id}__back__button`} to="/" />
             </div>
             <div className={`${className}__continue`} id={`${id}__continue`}>
-              {loading === 1 ? null : <button className={`${className}__continue__button`} id={`${id}__continue__button`} type="submit" form={`${id}__inputs`}>create account</button>}
+              {loading === 1 ? null : <button className={`${className}__continue__button`} id={`${id}__continue__button`} type="submit" form={`${id}__inputs`} disabled={disabled}>create account</button>}
             </div>
           </>
         )}
