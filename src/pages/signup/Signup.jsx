@@ -10,6 +10,7 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
   const [loading, setLoading] = useState(0);
   const [character, setCharacter] = useState('');
   const [image, setImage] = useState(1);
+  const [selectedCharacter, setSelectedCharacter] = useState(1);
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
@@ -85,6 +86,7 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
 
   const handleCharacter = (e) => {
     e.preventDefault();
+    setSelectedCharacter(image);
     navigate('/profile');
   };
 
@@ -141,7 +143,7 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
                 </p>
               </div>
             ) : null}
-            { usernameTaken ? (
+            { usernameTaken && !wrongUsername ? (
               <div className={`${className}__check`} id={`${id}__check`}>
                 <p className={`${className}__check__text`}>
                   this username is already taken
@@ -155,7 +157,7 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
                 </p>
               </div>
             ) : null}
-            { emailTaken ? (
+            { emailTaken && !wrongEmail ? (
               <div className={`${className}__check`} id={`${id}__check`}>
                 <p className={`${className}__check__text`}>
                   this email is already used
