@@ -37,3 +37,14 @@ export const UseCheckEmail = (email, setEmailTaken, setError, setLoading) => {
       setLoading(2);
     });
 };
+
+export const UseSetCharacter = async (character, token, setError, setLoading) => {
+  await loginService.setCharacter(character, token)
+    .then(() => {
+      setLoading(0);
+    })
+    .catch(() => {
+      setError('character selection failed');
+      setLoading(2);
+    });
+};

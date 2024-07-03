@@ -22,6 +22,15 @@ const getAccount = async (payload) => {
   return res.data;
 };
 
+const setCharacter = async (character, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  const body = { character };
+  const res = await axios.post(`${baseUrl}/api/character`, body, config);
+  return res.data;
+};
+
 export default {
-  createAccount, checkUsername, checkEmail, getAccount,
+  createAccount, checkUsername, checkEmail, getAccount, setCharacter,
 };
