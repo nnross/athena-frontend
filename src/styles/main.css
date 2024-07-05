@@ -499,6 +499,109 @@
   cursor: pointer;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #222222;
+  opacity: 80%;
+  top: 0;
+  position: sticky;
+  position: -webkit-sticky;
+}
+.header__title__text {
+  color: #F5F1E3;
+  font-size: 64px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+.header__nav {
+  display: flex;
+  height: 50px;
+  width: 40%;
+  justify-content: space-between;
+}
+.header__nav__profile {
+  display: inline-block;
+  background-image: url("../assets/profile.svg");
+  height: 25px;
+  width: 25px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.header__nav__profile__active {
+  display: inline-block;
+  background-image: url("../assets/profile.svg");
+  height: 25px;
+  width: 25px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid #F5F1E3;
+}
+.header__nav__feed {
+  display: inline-block;
+  background-image: url("../assets/feed.svg");
+  height: 25px;
+  width: 25px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.header__nav__feed__active {
+  display: inline-block;
+  background-image: url("../assets/feed.svg");
+  height: 25px;
+  width: 25px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid #F5F1E3;
+}
+.header__nav__gacha {
+  display: inline-block;
+  background-image: url("../assets/gacha.svg");
+  height: 25px;
+  width: 25px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.header__nav__gacha__active {
+  display: inline-block;
+  background-image: url("../assets/gacha.svg");
+  height: 25px;
+  width: 25px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid #F5F1E3;
+}
+.header__nav__settings {
+  display: inline-block;
+  background-image: url("../assets/settings.svg");
+  height: 25px;
+  width: 25px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.header__nav__settings__active {
+  display: inline-block;
+  background-image: url("../assets/settings.svg");
+  height: 25px;
+  width: 25px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid #F5F1E3;
+}
+.header__nav__logout {
+  cursor: pointer;
+  background: none;
+  border: none;
+  background-image: url("../assets/logout.svg");
+  height: 25px;
+  width: 25px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
 html, body {
   margin: 0;
   padding: 0;

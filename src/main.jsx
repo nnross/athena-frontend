@@ -7,6 +7,7 @@ import About from './pages/about';
 import Signup from './pages/signup';
 import Login from './pages/login';
 import Profile from './pages/profile';
+import Feed from './pages/feed';
 import StartingCharacter from './pages/startingCharacter';
 
 const router = createBrowserRouter([
@@ -35,6 +36,18 @@ const router = createBrowserRouter([
     },
     {
       path: 'profile',
+      element: <Profile />,
+    },
+    {
+      path: 'feed',
+      element: <Feed />,
+    },
+    {
+      path: 'gacha',
+      element: <Profile />,
+    },
+    {
+      path: 'settings',
       element: <Profile />,
     }],
   },

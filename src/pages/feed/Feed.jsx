@@ -3,13 +3,13 @@ import propTypes from 'prop-types';
 import React from 'react';
 import Header from '../../components/Header';
 
-const Profile = ({ className = 'profile', id = 'profile' }) => (
+const Feed = ({ className = 'feed', id = 'feed' }) => (
   <Header />
 );
 
-export default Profile;
+export default Feed;
 
-Profile.propTypes = {
+Feed.propTypes = {
   className: propTypes.string,
   id: propTypes.string,
 };

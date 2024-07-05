@@ -24,7 +24,7 @@
 		grid-row: 4;
 		z-index: 2;
 		display: flex;
-  	align-items: center;
+  		align-items: center;
 		&__button {
 			background-image: url('../assets/arrow-back.svg');
 			height: 20px;
@@ -46,8 +46,8 @@
 		grid-column: 3/3;
 		grid-row: 2;
 		display: flex;
-  	align-items: center;
-  	justify-content: center;
+  		align-items: center;
+  		justify-content: center;
 		cursor: default;
 		user-select: none;
 		z-index: 2;
