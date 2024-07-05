@@ -26,6 +26,14 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
   const [usernameTaken, setUsernameTaken] = useState(false);
   const [emailTaken, setEmailTaken] = useState(false);
 
+  const [errorMsg, setErrorMsg] = useState('');
+  const usernameWrongMsg = 'username needs to be at least 4 characters long and shorther than 20 characters';
+  const usernameTakenMsg = 'this username is already taken';
+  const emailWrongMsg = 'not an email address';
+  const emailTakenMsg = 'this email is already used';
+  const passwordWrongMsg = 'password must include the following: - min eight characters - one letter - one number - one special character';
+  const confirmPasswordMsg = 'passwords do not match';
+
   const usernameRegex = /^(?=.{4,20})/;
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
   const emailRegex = /^(?=.[\w-.]+@([\w-]+\.)+[\w-]{2,4}$)/;
@@ -35,10 +43,25 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
    * password and name are in the correct form.
    */
   useEffect(() => {
+    if (usernameRegex.test(username) === false && username !== '') {
+      setErrorMsg(usernameWrongMsg);
+    } else if (emailRegex.test(email) === false && email !== '') {
+      setErrorMsg(emailWrongMsg);
+    } else if (passwordRegex.test(password) === false && password !== '') {
+      setErrorMsg(passwordWrongMsg);
+    } else if (confirmPassword !== password) {
+      setErrorMsg(confirmPasswordMsg);
+    } else if (usernameTaken) {
+      setErrorMsg(usernameTakenMsg);
+    } else if (emailTaken) {
+      setErrorMsg(emailTakenMsg);
+    } else {
+      setErrorMsg('');
+    }
+
     setWrongUsername(usernameRegex.test(username) === false && username !== '');
     setWrongEmail(emailRegex.test(email) === false && email !== '');
     setWrongPassword(passwordRegex.test(password) === false && password !== '');
-    // passwordRegex.test(password) ? setErrorMsg("error viesti") : none);
     setWrongConfirmPassword(confirmPassword !== password);
 
     if (usernameRegex.test(username) === false
@@ -46,7 +69,7 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
       || confirmPassword !== password
       || [username, email, password, confirmPassword].includes('')) setDisabled(true);
     else setDisabled(false);
-  }, [username, email, password, confirmPassword]);
+  }, [username, email, password, confirmPassword, usernameTaken, emailTaken]);
 
   const checkUsername = () => {
     if (!wrongUsername) {
@@ -98,53 +121,24 @@ const Signup = ({ className = 'signup', id = 'signup' }) => {
         <input className={`${className}__inputs__confirm`} id={`${id}__inputs__confirm`} type="password" name="confirm" onChange={(e) => setConfirmPassword(e.target.value)} />
         <label className={`${className}__inputs__confirm__label`} id={`${id}__inputs__confirm__label`} htmlFor="confirm">confirm password</label>
       </form>
-      { wrongUsername ? (
-        <div className={`${className}__check`} id={`${id}__check`}>
-          <p className={`${className}__check__text`}>
-            username needs to be at least 4 characters
-            long and shorther than 20 characters
-          </p>
-        </div>
-      ) : null}
-      { usernameTaken && !wrongUsername ? (
-        <div className={`${className}__check`} id={`${id}__check`}>
-          <p className={`${className}__check__text`}>
-            this username is already taken
-          </p>
-        </div>
-      ) : null}
-      { wrongEmail ? (
-        <div className={`${className}__check`} id={`${id}__check`}>
-          <p className={`${className}__check__text`}>
-            not an email address
-          </p>
-        </div>
-      ) : null}
-      { emailTaken && !wrongEmail ? (
-        <div className={`${className}__check`} id={`${id}__check`}>
-          <p className={`${className}__check__text`}>
-            this email is already used
-          </p>
-        </div>
-      ) : null}
-      { wrongPassword ? (
-        <div className={`${className}__check`} id={`${id}__check`}>
-          <ul className={`${className}__check__list`}>
-            password must include the following:
-            <li> min eight characters </li>
-            <li> one letter </li>
-            <li> one number </li>
-            <li> one special character </li>
-          </ul>
-        </div>
-      ) : null}
-      { !wrongPassword && wrongConfirmPassword ? (
-        <div className={`${className}__check`} id={`${id}__check`}>
-          <p className={`${className}__check__text`}>
-            passwords do not match
-          </p>
-        </div>
-      ) : null}
+      <div className={`${className}__check`} id={`${id}__check`}>
+        {errorMsg === passwordWrongMsg
+          ? (
+            <div className={`${className}__check`} id={`${id}__check`}>
+              <ul className={`${className}__check__list`}>
+                { errorMsg.split('-').forEach((x) => (
+                  <li>
+                    {x}
+                  </li>
+                )) }
+              </ul>
+            </div>
+          ) : (
+            <p className={`${className}__check__text`}>
+              {errorMsg}
+            </p>
+          )}
+      </div>
       <div className={`${className}__back`} id={`${id}__back`}>
         <Link className={`${className}__back__button`} id={`${id}__back__button`} to="/" />
       </div>
