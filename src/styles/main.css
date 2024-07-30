@@ -915,6 +915,8 @@
 .profile__tasks {
   grid-column: 3;
   grid-row: 4/6;
+  max-height: 400px;
+  overflow-y: scroll;
 }
 .profile__badges {
   grid-column: 2;

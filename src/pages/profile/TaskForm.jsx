@@ -4,8 +4,7 @@ import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import { UseCreateTask } from './profileHook';
 
-const TaskForm = ({ className = 'taskForm', id = 'taskForm', setCreate, setLoading, setError, token }) => {
-
+const TaskForm = ({ className = 'taskForm', id = 'taskForm', setCreate, setLoading, setError, token, newTask, setNewTask }) => {
     function restrictNumberInput(e) {
       const value = e.target.value;
       e.target.value = value.replace(/[e\+\-]/gi, '');
@@ -24,6 +23,7 @@ const TaskForm = ({ className = 'taskForm', id = 'taskForm', setCreate, setLoadi
         setError,
         setLoading,
       )
+      setNewTask(newTask+1);
     }
   
   return (

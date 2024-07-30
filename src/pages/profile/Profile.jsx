@@ -9,6 +9,7 @@ const Profile = ({ className = 'profile', id = 'profile' }) => {
   const [create, setCreate] = useState(false);
   const [loading, setLoading] = useState(0);
   const [error, setError] = useState(0);
+  const [newTask, setNewTask] = useState(0);
 
   const token = localStorage.getItem('token');
 
@@ -42,14 +43,14 @@ const Profile = ({ className = 'profile', id = 'profile' }) => {
         </div>
         <div className={`${className}__divider`} id={`${id}__divider`} />
         <div className={`${className}__tasks`} id={`${id}__tasks`}>
-          <Tasks tasks={['eka', 'toka', 'kokeillaan pidempää nimee']} />
+          <Tasks token={token} setLoading={setLoading} setError={setError} newTask={newTask} />
         </div>
         <div className={`${className}__money`} id={`${id}__money`}>
           <img className={`${className}__money__img`} src="../src/assets/money.svg" alt="" />
           <p className={`${className}__money__text`}>29387</p>
         </div>
         <div className={`${className}__form`} id={`${id}__form`}>
-          { create ? <TaskForm setCreate={setCreate} setLoading={setLoading} setError={setError} token={token} /> : null }
+          { create ? <TaskForm setCreate={setCreate} setLoading={setLoading} setError={setError} token={token} newTask={newTask} setNewTask={setNewTask} /> : null }
         </div>
 
       </div>
