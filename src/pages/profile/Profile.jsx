@@ -2,13 +2,16 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import Header from '../../components/Header';
-import Tasks from '../../components/Tasks'
-import TaskForm from '../../components/TaskForm';
+import Tasks from './Tasks'
+import TaskForm from './TaskForm';
 
 const Profile = ({ className = 'profile', id = 'profile' }) => {
-  const [task, setTask] = useState('');
   const [create, setCreate] = useState(false);
-  console.log(create);
+  const [loading, setLoading] = useState(0);
+  const [error, setError] = useState(0);
+
+  const token = localStorage.getItem('token');
+
   return (
     <>
       <Header />
@@ -46,7 +49,7 @@ const Profile = ({ className = 'profile', id = 'profile' }) => {
           <p className={`${className}__money__text`}>29387</p>
         </div>
         <div className={`${className}__form`} id={`${id}__form`}>
-          { create ? <TaskForm setCreate={setCreate} /> : null }
+          { create ? <TaskForm setCreate={setCreate} setLoading={setLoading} setError={setError} token={token} /> : null }
         </div>
 
       </div>
