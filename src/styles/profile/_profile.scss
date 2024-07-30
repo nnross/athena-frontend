@@ -1,5 +1,138 @@
 .profile {
-    background-color: $black;
-    opacity: 80%;
-    min-height: 100vh;
+    display: grid;
+	grid-template-columns: 1fr minmax(0, 400px) minmax(0, 600px) 1fr;
+	grid-template-rows: 25px 25px 65px auto 100px 20px auto;
+    background-color: $background;
+    min-height: calc(100vh - 150px);
+    &__title {
+        grid-column: 3;
+        grid-row: 1/3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &__text {
+            color: $white;
+            font-size: 20px;
+            cursor: default;
+            user-select: none;
+        }
+    }
+    &__img {
+        grid-column: 2;
+        grid-row: 2/5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &__character {
+            height: 300px;
+        }
+    }
+    &__add {
+        grid-column: 3;
+        grid-row: 3;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 10%;
+        padding-right: 10%;
+        &__text {
+            color: $white;
+            cursor: default;
+            user-select: none;
+        }
+        &__button {
+            height: 30px;
+            width: 70px;
+            background-image: url('../assets/add.svg');
+            background-color: $lightblue;
+            background-size: 40%;
+            border: none;
+            border-radius: 5px;
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+    }
+    &__divider {
+        grid-column: 3;
+        grid-row: 4;
+        display: inline-block;
+        height: 1px;
+        width: 60%;
+        margin: 0 auto;
+        background-color: $white;
+        position: relative;
+        
+    }
+    &__stats {
+        grid-column: 2;
+        grid-row: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: $white;
+        cursor: default;
+        user-select: none;
+        &__name {
+            margin-top: 0;
+            font-size: 18px;
+        }
+        &__power {
+            margin: 0;
+            width: 60%;
+            display: flex;
+            justify-content: space-between;
+            & > span {
+                white-space: nowrap;
+            }
+        }
+        &__rank {
+            margin: 0;
+            width: 60%;
+            display: flex;
+            justify-content: space-between;
+            & > span {
+                white-space: nowrap;
+            }
+        }
+    }
+    &__tasks {
+        grid-column: 3;
+        grid-row: 4/6;
+    }
+    &__badges {
+        grid-column: 2;
+        grid-row: 7;
+        display: flex;
+        width: 60%;
+        margin: 0 auto;
+        &__img {
+            width: 40px;
+            height: 40px;
+        }
+    }
+    &__money {
+        grid-column: 3;
+        grid-row: 7;
+        color: $white;
+        display: flex;
+        justify-content: center;
+        cursor: default;
+        user-select: none;
+        &__img {
+            height: 20px;
+            padding-right: 3px;
+        }
+        &__text {
+            margin: 0;
+            padding-left: 3px;
+        }
+    }
+    &__form {
+        position: fixed;
+        z-index: 100;
+        min-width: 100vw;
+        top: 0;
+    }
 }

@@ -1,23 +1,24 @@
 .login {
-    display: grid;
+      display: grid;
       grid-template-columns: auto 35px 280px 35px auto;
       grid-template-rows: auto 250px 100px auto;
       min-height: 100vh;
-      background-image: url('../assets/background.jpeg');
+      background-image: url('../assets/background.PNG');
       width: 100%;
       height: auto;
       background-size: cover;
       background-position: center center;
       &__title{
-          color: $white;
-          font-size: 64px;
-          grid-column: 3/3;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: default;
-          user-select: none;
-          grid-row: 1;
+        color: $white;
+        font-size: 64px;
+        grid-column: 3/3;
+        display: flex;
+        justify-content: center;
+        cursor: default;
+        user-select: none;
+        grid-row: 1;
+        position: relative;
+        top: 20%;
       }
       &__box {
           grid-column: 2/5;

@@ -1,0 +1,125 @@
+.taskForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(78, 78, 78, .8);
+    min-height: 100vh;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    &__form {
+        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 400px;
+        height: 350px;
+        background-color: $black;
+        color: $white;
+        border: $white 1px solid;
+        border-radius: 5px;
+        &__inputs {
+            display: flex;
+            flex-direction: column;
+            &__title {
+                background: transparent;
+                box-sizing: border-box;
+                border: none;
+                border-bottom: 1px solid $white;
+                width: 300px;
+                padding-top: 20px;
+                &__label {
+                    padding-bottom: 20px;
+                    color: $white;
+                }
+                &:focus {
+                    outline: none;
+                    color: $white;
+                    font-family: 'mainText';
+                }
+            }
+            &__note {
+                background: transparent;
+                box-sizing: border-box;
+                border: none;
+                border-bottom: 1px solid $white;
+                width: 300px;
+                &__label {
+                    padding-bottom: 20px;
+                    color: $white;
+                }
+                &:focus {
+                    outline: none;
+                    color: $white;
+                    font-family: 'mainText';
+                }
+            }
+            &__time {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                &__input {
+                    display: flex;
+                    background-color: transparent;
+                    color: $white;
+                    border: none;
+                    &__h {
+                        background-color: transparent;
+                        border: none;
+                        border-bottom: 1px solid $white;
+                        text-align: center;
+                        width: 40px;
+                        cursor: help;
+                        &::-webkit-inner-spin-button,
+                        &::-webkit-outer-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+                    }
+                    &__m {
+                        background-color: transparent;
+                        border: none;
+                        border-bottom: 1px solid $white;
+                        text-align: center;
+                        width: 40px;
+                        cursor: help;
+                        &::-webkit-inner-spin-button,
+                        &::-webkit-outer-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+        }
+        &__buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            width: 200px;
+            &__back {
+                background-image: url('../assets/arrow-back.svg');
+                height: 20px;
+                width: 20px;
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+            }
+            &__submit {
+                color: $white;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+            }
+        }
+        &__text {
+            margin-top: 0px;
+            cursor: default;
+		    user-select: none;
+        }
+    }
+}
