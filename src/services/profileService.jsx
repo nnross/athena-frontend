@@ -18,4 +18,11 @@ const getTasks = async (token) => {
   return res.data
 }
 
+const deleteTasks = async (remove, token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  const res = await axios.delete(`${baseUrl}/api/task`, remove, config);
+}
+
 export default { createTask, getTasks }

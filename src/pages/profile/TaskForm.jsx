@@ -5,14 +5,14 @@ import propTypes from 'prop-types';
 import { UseCreateTask } from './profileHook';
 
 const TaskForm = ({ className = 'taskForm', id = 'taskForm', setCreate, setLoading, setError, token, newTask, setNewTask }) => {
-    function restrictNumberInput(e) {
+    const restrictNumberInput = (e) => {
       const value = e.target.value;
       e.target.value = value.replace(/[e\+\-]/gi, '');
     }
 
     const handleCreate = (e) => {
       setLoading(1);
-      e.preventDefault;
+      e.preventDefault();
       const values = e.target.elements;
       UseCreateTask(
         values[0].value,
@@ -22,8 +22,10 @@ const TaskForm = ({ className = 'taskForm', id = 'taskForm', setCreate, setLoadi
         token,
         setError,
         setLoading,
+        newTask,
+        setNewTask,
       )
-      setNewTask(newTask+1);
+      setCreate(false);
     }
   
   return (

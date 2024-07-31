@@ -1,12 +1,13 @@
 import profileService from "../../services/profileService";
 
-export const UseCreateTask = (title, note, hours, minutes, token, setLoading, setError) => {
+export const UseCreateTask = (title, note, hours, minutes, token, setLoading, setError, newTask, setNewTask) => {
   const time = parseInt(hours) * 60 + parseInt(minutes)
   const payload = { title, note, time };
 
   profileService.createTask(payload, token)
-    .then((res) => {
+    .then(() => {
       setLoading(0);
+      setNewTask(newTask+1);
     })
     .catch(() => {
       setError('an error has occurred while creating task');
@@ -25,3 +26,15 @@ export const UseGetTasks = (token, setTasks, setLoading, setError) => {
       setLoading(2);
     })
 };
+
+export const UseDeleteTask = (remove, token, setError, setLoading, newTask, setNewTask) => {
+  profileService.deleteTasks(token, remove)
+    .then(() => {
+      setLoading(0);
+      setNewTask(newTask+1);
+    })
+    .catch(() => {
+      setError('an error had occurred while deleting a task');
+      setLoading(2);
+    })
+}

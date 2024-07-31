@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import { UseGetTasks } from './profileHook';
 
-const Tasks = ({ className = 'tasks', id = 'tasks', token, setLoading, setError, newTask }) => {
+const Tasks = ({ className = 'tasks', id = 'tasks', token, setLoading, setError, newTask, setRemove }) => {
   const tasklist = [];
   const [tasks, setTasks] = useState([]);
 
@@ -22,7 +22,7 @@ const Tasks = ({ className = 'tasks', id = 'tasks', token, setLoading, setError,
         <p className={`${className}__list__note__text`} id={`${id}__list__note__text`}>{task.note}</p>
       </div>
       <div className={`${className}__list__buttons`} id={`${id}__list__buttons`}>
-        <button className={`${className}__list__buttons__delete`} id={`${id}__list__buttons__delete`} aria-label="delete" />
+        <button className={`${className}__list__buttons__delete`} id={`${id}__list__buttons__delete`} aria-label="delete" onClick={() => setRemove(task._id)}/>
         <button className={`${className}__list__buttons__done`} id={`${id}__list__buttons__done`} aria-label="done" />
       </div>
     </div>,
