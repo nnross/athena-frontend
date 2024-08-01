@@ -27,11 +27,14 @@ export const UseGetTasks = (token, setTasks, setLoading, setError) => {
     })
 };
 
-export const UseDeleteTask = (remove, token, setError, setLoading, newTask, setNewTask) => {
-  profileService.deleteTasks(token, remove)
+export const UseDeleteTask = (remove, token, setError, setLoading, newTask, setNewTask, done, setDone) => {
+  const payload = { remove, done };
+
+  profileService.deleteTasks(payload, token)
     .then(() => {
       setLoading(0);
       setNewTask(newTask+1);
+      setDone(false);
     })
     .catch(() => {
       setError('an error had occurred while deleting a task');

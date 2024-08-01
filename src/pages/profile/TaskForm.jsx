@@ -60,5 +60,4 @@ export default TaskForm;
 TaskForm.propTypes = {
   className: propTypes.string,
   id: propTypes.string,
-  tasks: propTypes.arrayOf(propTypes.any),
 };

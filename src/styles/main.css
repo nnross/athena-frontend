@@ -955,6 +955,76 @@
   top: 0;
 }
 
+.confirmDelete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(78, 78, 78, 0.8);
+  min-height: 100vh;
+  z-index: 10;
+  top: 0;
+  left: 0;
+}
+.confirmDelete__box {
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 350px;
+  height: 300px;
+  background-color: #222222;
+  color: #F5F1E3;
+  border: #F5F1E3 1px solid;
+  border-radius: 5px;
+}
+.confirmDelete__box__title {
+  margin-bottom: 40px;
+  cursor: default;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.confirmDelete__box__info {
+  margin: 0;
+}
+.confirmDelete__box__info2 {
+  margin: 0;
+}
+.confirmDelete__box__money {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.confirmDelete__box__money__img {
+  padding: 10px;
+}
+.confirmDelete__box__money__amount {
+  padding: 10px;
+}
+.confirmDelete__box__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+}
+.confirmDelete__box__buttons__back {
+  background-image: url("../assets/arrow-back.svg");
+  height: 20px;
+  width: 20px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.confirmDelete__box__buttons__delete {
+  color: #F5F1E3;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 html, body {
   margin: 0;
   padding: 0;

@@ -4,6 +4,7 @@ import propTypes from 'prop-types';
 import Header from '../../components/Header';
 import Tasks from './Tasks'
 import TaskForm from './TaskForm';
+import ConfirmDelete from './ConfirmDelete';
 
 const Profile = ({ className = 'profile', id = 'profile' }) => {
   const [create, setCreate] = useState(false);
@@ -12,8 +13,6 @@ const Profile = ({ className = 'profile', id = 'profile' }) => {
   const [error, setError] = useState(0);
   const [newTask, setNewTask] = useState(0);
   const [done, setDone] = useState(false);
-  //jatka tästä, tee sillee että on tää done ja jos se poistetaa nii false jos se on done nii true
-  //sit sen perusteella menee db et pitääks käyttäjält poistaa rahaa tai lisää jonku verra rahaa
 
   const token = localStorage.getItem('token');
 
@@ -47,7 +46,7 @@ const Profile = ({ className = 'profile', id = 'profile' }) => {
         </div>
         <div className={`${className}__divider`} id={`${id}__divider`} />
         <div className={`${className}__tasks`} id={`${id}__tasks`}>
-          <Tasks token={token} setLoading={setLoading} setError={setError} newTask={newTask} setRemove={setRemove} />
+          <Tasks token={token} setLoading={setLoading} setError={setError} newTask={newTask} setRemove={setRemove} setDone={setDone} />
         </div>
         <div className={`${className}__money`} id={`${id}__money`}>
           <img className={`${className}__money__img`} src="../src/assets/money.svg" alt="" />
@@ -55,9 +54,8 @@ const Profile = ({ className = 'profile', id = 'profile' }) => {
         </div>
         <div className={`${className}__form`} id={`${id}__form`}>
           { create ? <TaskForm setCreate={setCreate} setLoading={setLoading} setError={setError} token={token} newTask={newTask} setNewTask={setNewTask} /> : null }
-          { remove !== "" ? null : null }
+          { remove !== "" ? <ConfirmDelete token={token} setRemove={setRemove} remove={remove} setLoading={setLoading} setError={setError} newTask={newTask} setNewTask={setNewTask} done={done} setDone={setDone} /> : null }
         </div>
-
       </div>
     </>
   );
